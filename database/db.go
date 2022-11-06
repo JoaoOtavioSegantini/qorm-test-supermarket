@@ -25,8 +25,6 @@ var Mux *http.ServeMux
 
 func Connect(connectionString string) {
 
-	configuration()
-
 	if dbError != nil {
 		log.Fatal(dbError)
 		panic("Cannot connect to DB")
@@ -59,7 +57,7 @@ func Migrate() {
 	log.Println("Database Migration Completed!")
 }
 
-func configuration() {
+func init() {
 	dbConfig := config.Config.DB
 	if config.Config.DB.Adapter == "mysql" {
 		DB, dbError = gorm.Open("mysql", fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?parseTime=True&loc=Local", dbConfig.User, dbConfig.Password, dbConfig.Host, dbConfig.Port, dbConfig.Name))
