@@ -24,6 +24,8 @@ github.com/gin-contrib/sse v0.1.0 h1:Y/yl/+YNO8GZSjAhjMsSuLt29uWRFHdHYUb5lYOV9qE
 github.com/gin-contrib/sse v0.1.0/go.mod h1:RHrZQHXnP2xjPF+u1gW/2HnVO7nvIa9PG3Gm+fLHvGI=
 github.com/gin-gonic/gin v1.8.1 h1:4+fr/el88TOO3ewCmQr8cx/CtZ/umlIRIs5M4NTNjf8=
 github.com/gin-gonic/gin v1.8.1/go.mod h1:ji8BvRH1azfM+SYow9zQ6SZMvR8qOMZHmsCuWR9tTTk=
+github.com/go-chi/chi v1.5.4 h1:QHdzF2szwjqVV4wmByUnTcsbIg7UGaQ0tPF2t5GcAIs=
+github.com/go-chi/chi v1.5.4/go.mod h1:uaf8YgoFazUOkPBG7fxPftUylNumIev9awIWOENIuEg=
 github.com/go-playground/assert/v2 v2.0.1/go.mod h1:VDjEfimB/XKnb+ZQfWdccd7VUvScMdVu0Titje2rxJ4=
 github.com/go-playground/locales v0.14.0 h1:u50s323jtVGugKlcYeyzC0etD1HifMjqmJqb8WugfUU=
 github.com/go-playground/locales v0.14.0/go.mod h1:sawfccIbzZTqEDETgFXqTho0QybSa7l++s0DH+LDiLs=
@@ -137,6 +139,7 @@ github.com/qor/oss v0.0.0-20191031055114-aef9ba66bf76/go.mod h1:JhtPzUhP5KGtCB2y
 github.com/qor/publish v0.0.0-20181014061411-abfbacee9e0d h1:U+g8WMSHCibub/ZnX5gIG8SKk8d1UA0Ppv863vGhfoE=
 github.com/qor/publish v0.0.0-20181014061411-abfbacee9e0d/go.mod h1:rsJ6QTqNLOPY3xaWmphqPkMqqbBPS8pAwkJWY+t5XHg=
 github.com/qor/publish2 v0.0.0-20200106024649-fcb930aa85ac/go.mod h1:f29A86/3KWWIOAsHjZP4gVb/PHHtPIONEm5ZrjqTU9A=
+github.com/qor/publish2 v0.0.0-20200729081509-d97fdb5620a5 h1:yPZKRv1lxMYphCyWyzUYvqXH8NvSNr8O/LwNeSONp8E=
 github.com/qor/publish2 v0.0.0-20200729081509-d97fdb5620a5/go.mod h1:eWD99pi0Tv8eO0V+cdDxTpJEZYuxjMzQ0oBo0DRx8vE=
 github.com/qor/qor v0.0.0-20200715033016-13227382be83/go.mod h1:oG+LgDEnsI9avcFFdczoZnBe3rw42s4cG433w6XpEig=
 github.com/qor/qor v0.0.0-20200729071734-d587cffbbb93/go.mod h1:i3WqgQWpyNJRB9D3ewgthf5/8fR/ALcvPGUqu5vHZA8=

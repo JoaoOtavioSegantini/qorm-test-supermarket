@@ -26,6 +26,7 @@ require (
 	github.com/chris-ramon/douceur v0.2.0 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/gin-gonic/gin v1.8.1 // indirect
+	github.com/go-chi/chi v1.5.4
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.10.0 // indirect
@@ -55,6 +56,7 @@ require (
 	github.com/qor/l10n v0.0.0-20181031091737-2ca95fb3b4dd
 	github.com/qor/media v0.0.0-20210903074215-02bf646a73bd
 	github.com/qor/middlewares v0.0.0-20170822143614-781378b69454 // indirect
+	github.com/qor/publish2 v0.0.0-20200729081509-d97fdb5620a5
 	github.com/qor/qor v0.0.0-20210618082622-a52aba0a0ce1 // indirect
 	github.com/qor/redirect_back v0.0.0-20170907030740-b4161ed6f848
 	github.com/qor/responder v0.0.0-20171031032654-b6def473574f // indirect
