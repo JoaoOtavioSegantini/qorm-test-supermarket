@@ -12,7 +12,6 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/joaootav/system_supermarket/config"
 	"github.com/joaootav/system_supermarket/models"
-	"github.com/qor/admin"
 	"github.com/qor/l10n"
 	"github.com/qor/media"
 	"github.com/qor/sorting"
@@ -30,16 +29,8 @@ func Connect(connectionString string) {
 		panic("Cannot connect to DB")
 	}
 
-	Admin := admin.New(&admin.AdminConfig{DB: DB})
-
-	Admin.AddResource(&models.Supplier{})
-	Admin.AddResource(&models.Product{})
-
 	// initialize an HTTP request multiplexer
 	Mux = http.NewServeMux()
-
-	// Mount admin interface to mux
-	Admin.MountTo("/admin", Mux)
 
 	log.Println("Connected to Database!")
 }
@@ -53,6 +44,9 @@ func Migrate() {
 		&models.OutSale{},
 		&models.Sale{},
 		&models.Supplier{},
+		&models.User{},
+		&models.UserGroup{},
+		&models.MySEOSetting{},
 	)
 	log.Println("Database Migration Completed!")
 }
@@ -65,8 +59,8 @@ func init() {
 	} else if config.Config.DB.Adapter == "postgres" {
 		DB, dbError = gorm.Open("postgres", fmt.Sprintf("postgres://%v:%v@%v/%v?sslmode=disable", dbConfig.User, dbConfig.Password, dbConfig.Host, dbConfig.Name))
 	} else if config.Config.DB.Adapter == "sqlite" {
-		dbUri := ":memory:"
-		DB, dbError = gorm.Open("sqlite3", dbUri)
+		//	dbUri := ":memory:"
+		DB, dbError = gorm.Open("sqlite3", fmt.Sprintf("%v/%v", "./database/", dbConfig.Name))
 	} else {
 		panic(errors.New("not supported database adapter"))
 	}
