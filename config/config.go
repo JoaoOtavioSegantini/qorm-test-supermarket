@@ -31,4 +31,5 @@ func init() {
 	if err := configor.Load(&Config, "config/database.yml"); err != nil {
 		panic(err)
 	}
+
 }
