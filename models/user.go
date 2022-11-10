@@ -1,9 +1,14 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"github.com/qor/sorting"
+	"gorm.io/gorm"
+)
 
 type User struct {
 	gorm.Model
+	sorting.Sorting
+	Group     []UserGroup
 	Email     string `unique;form:"email"`
 	Password  string
 	Name      string `form:"name"`
@@ -12,6 +17,17 @@ type User struct {
 	Confirmed bool
 }
 
+type UserGroup struct {
+	gorm.Model
+	//l10n.Locale
+	sorting.Sorting
+	Name string //`l10n:"sync"`
+}
+
 func (user User) DisplayName() string {
 	return user.Email
+}
+
+func (user User) AvailableLocales() []string {
+	return []string{"en-US", "zh-CN"}
 }
