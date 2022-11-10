@@ -29,6 +29,8 @@ var (
 
 func init() {
 	database.DB.AutoMigrate(&auth_identity.AuthIdentity{})
+	Auth.Render.DefaultLayout = "login_layout"
+
 	//	Auth.RegisterProvider(github.New(&config.Config.Github))
 	//	Auth.RegisterProvider(google.New(&config.Config.Google))
 	//	Auth.RegisterProvider(facebook.New(&config.Config.Facebook))
