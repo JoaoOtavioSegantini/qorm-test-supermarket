@@ -1,6 +1,6 @@
 package models
 
-import "gorm.io/gorm"
+import "github.com/jinzhu/gorm"
 
 type Sale struct {
 	gorm.Model

@@ -1,6 +1,9 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"github.com/jinzhu/gorm"
+	"github.com/qor/publish2"
+)
 
 type Product struct {
 	gorm.Model
@@ -11,4 +14,8 @@ type Product struct {
 	PrecoDeVenda float64
 	Mediacao     int
 	Status       bool
+
+	publish2.Version
+	publish2.Schedule
+	publish2.Visible
 }

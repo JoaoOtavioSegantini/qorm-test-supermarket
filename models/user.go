@@ -1,8 +1,8 @@
 package models
 
 import (
+	"github.com/jinzhu/gorm"
 	"github.com/qor/sorting"
-	"gorm.io/gorm"
 )
 
 type User struct {
