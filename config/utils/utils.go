@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"html/template"
 	"net/http"
 
 	"github.com/go-chi/chi"
@@ -9,8 +10,11 @@ import (
 	"github.com/joaootav/system_supermarket/config/auth"
 	"github.com/joaootav/system_supermarket/database"
 	"github.com/joaootav/system_supermarket/models"
+	"github.com/microcosm-cc/bluemonday"
 	"github.com/qor/l10n"
 	"github.com/qor/qor/utils"
+	"github.com/qor/session"
+	"github.com/qor/session/manager"
 )
 
 // GetCurrentUser get current user from request
@@ -48,3 +52,11 @@ func GetDB(req *http.Request) *gorm.DB {
 func URLParam(name string, req *http.Request) string {
 	return chi.URLParam(req, name)
 }
+
+// AddFlashMessage helper
+func AddFlashMessage(w http.ResponseWriter, req *http.Request, message string, mtype string) error {
+	return manager.SessionManager.Flash(w, req, session.Message{Message: template.HTML(message), Type: mtype})
+}
+
+// HTMLSanitizer HTML sanitizer
+var HTMLSanitizer = bluemonday.UGCPolicy()
