@@ -14,6 +14,7 @@ import (
 	"github.com/qor/render"
 	"github.com/qor/session"
 	"github.com/qor/session/manager"
+	"github.com/qor/widget"
 )
 
 // AddFuncMapMaker add FuncMapMaker to view
@@ -32,6 +33,20 @@ func AddFuncMapMaker(view *render.Render) *render.Render {
 
 		for key, value := range admin.ActionBar.FuncMap(w, req) {
 			funcMap[key] = value
+		}
+
+		widgetContext := admin.Widgets.NewContext(&widget.Context{
+			DB:         utils.GetDB(req),
+			Options:    map[string]interface{}{"Request": req},
+			InlineEdit: utils.GetEditMode(w, req),
+		})
+
+		for key, fc := range widgetContext.FuncMap() {
+			funcMap[key] = fc
+		}
+
+		funcMap["raw"] = func(str string) template.HTML {
+			return template.HTML(utils.HTMLSanitizer.Sanitize(str))
 		}
 
 		// Add `action_bar` method

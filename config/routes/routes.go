@@ -27,7 +27,7 @@ func Router() *http.ServeMux {
 			Application = application.New(&application.Config{
 				Router: router,
 				Admin:  Admin,
-				DB:     database.DB,
+				DB:     database.DB.Set(publish2.VisibleMode, publish2.ModeOff).Set(publish2.ScheduleMode, publish2.ModeOff),
 			})
 		)
 		funcmapmaker.AddFuncMapMaker(auth.Auth.Config.Render)

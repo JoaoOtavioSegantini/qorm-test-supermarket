@@ -12,8 +12,12 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/joaootav/system_supermarket/config"
 	"github.com/joaootav/system_supermarket/models"
+	"github.com/joaootav/system_supermarket/models/settings"
+	"github.com/qor/banner_editor"
 	"github.com/qor/l10n"
 	"github.com/qor/media"
+	"github.com/qor/media/asset_manager"
+	"github.com/qor/publish2"
 	"github.com/qor/sorting"
 	"github.com/qor/validations"
 )
@@ -47,6 +51,10 @@ func Migrate() {
 		&models.User{},
 		&models.UserGroup{},
 		&models.MySEOSetting{},
+		&settings.Setting{},
+		&settings.MediaLibrary{},
+		&asset_manager.AssetManager{},
+		&banner_editor.QorBannerEditorSetting{},
 	)
 	log.Println("Database Migration Completed!")
 }
@@ -73,6 +81,8 @@ func init() {
 		sorting.RegisterCallbacks(DB)
 		validations.RegisterCallbacks(DB)
 		media.RegisterCallbacks(DB)
+		publish2.RegisterCallbacks(DB)
+
 	} else {
 		panic(dbError)
 	}
