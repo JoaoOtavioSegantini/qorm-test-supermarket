@@ -12,13 +12,17 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/joaootav/system_supermarket/config"
 	"github.com/joaootav/system_supermarket/models"
+	"github.com/joaootav/system_supermarket/models/blogs"
 	"github.com/joaootav/system_supermarket/models/settings"
+	"github.com/qor/activity"
 	"github.com/qor/banner_editor"
+	"github.com/qor/help"
 	"github.com/qor/l10n"
 	"github.com/qor/media"
 	"github.com/qor/media/asset_manager"
 	"github.com/qor/publish2"
 	"github.com/qor/sorting"
+	"github.com/qor/transition"
 	"github.com/qor/validations"
 )
 
@@ -55,6 +59,10 @@ func Migrate() {
 		&settings.MediaLibrary{},
 		&asset_manager.AssetManager{},
 		&banner_editor.QorBannerEditorSetting{},
+		&transition.StateChangeLog{},
+		&activity.QorActivity{},
+		&blogs.Page{}, &blogs.Article{},
+		&help.QorHelpEntry{},
 	)
 	log.Println("Database Migration Completed!")
 }

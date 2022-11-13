@@ -6,9 +6,16 @@ require gorm.io/gorm v1.24.1
 
 require (
 	github.com/BurntSushi/toml v0.3.1 // indirect
+	github.com/Shaked/gomobiledetect v0.0.0-20171211181707-25f014f66568 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/disintegration/imaging v1.6.2 // indirect
+	github.com/frankban/quicktest v1.5.0 // indirect
+	github.com/google/btree v1.0.0 // indirect
+	github.com/google/go-cmp v0.5.5 // indirect
 	github.com/jinzhu/copier v0.0.0-20190924061706-b57f9002281a // indirect
+	github.com/kr/pretty v0.3.0 // indirect
+	github.com/kr/text v0.2.0 // indirect
+	github.com/peterbourgon/diskv v2.0.1+incompatible // indirect
 	github.com/qor/audited v0.0.0-20171228121055-b52c9c2f0571 // indirect
 	github.com/qor/cache v0.0.0-20171031031927-c9d48d1f13ba // indirect
 	github.com/qor/i18n v0.0.0-20211222090924-1c3ad686ead6 // indirect
@@ -17,8 +24,14 @@ require (
 	github.com/qor/publish v0.0.0-20181014061411-abfbacee9e0d // indirect
 	github.com/qor/render v1.1.1 // indirect
 	github.com/qor/serializable_meta v0.0.0-20180510060738-5fd8542db417 // indirect
+	github.com/qor/slug v0.0.0-20171031101006-545ed2e36452 // indirect
 	github.com/qor/worker v0.0.0-20190805090529-35a245417f70 // indirect
+	github.com/rogpeppe/fastuuid v1.2.0 // indirect
+	github.com/rogpeppe/go-internal v1.8.0 // indirect
+	github.com/shabbyrobe/xmlwriter v0.0.0-20200208144257-9fca06d00ffa // indirect
+	github.com/tealeg/xlsx/v3 v3.2.0 // indirect
 	golang.org/x/image v0.0.0-20191009234506-e7c1f5e7dbb8 // indirect
+	golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543 // indirect
 )
 
 require (
@@ -46,20 +59,26 @@ require (
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
-	github.com/mattn/go-sqlite3 v1.14.15 // indirect
+	github.com/mattn/go-sqlite3 v2.0.3+incompatible // indirect
 	github.com/microcosm-cc/bluemonday v1.0.21 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421 // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.1 // indirect
 	github.com/qor/action_bar v0.0.0-20190314070413-136e5e2c5b8c
+	github.com/qor/activity v0.0.0-20201007030921-c3c84bfbfba2
 	github.com/qor/admin v1.2.0 // indirect
 	github.com/qor/assetfs v0.0.0-20170713023933-ff57fdc13a14 // indirect
 	github.com/qor/auth v0.0.0-20200821034127-11d4c974507d
 	github.com/qor/auth_themes v0.0.0-20190103025702-000e8ac9b42d
+	github.com/qor/banner_editor v0.0.0-20181014061955-007b0b21481e
+	github.com/qor/exchange v0.0.0-20201013055955-8e12e25ac3bf
+	github.com/qor/help v0.0.0-20171031093129-202965d1156a
 	github.com/qor/l10n v0.0.0-20181031091737-2ca95fb3b4dd
+	github.com/qor/location v0.0.0-20181014061834-8c618bfef8ed
 	github.com/qor/media v0.0.0-20210903074215-02bf646a73bd
 	github.com/qor/middlewares v0.0.0-20170822143614-781378b69454 // indirect
 	github.com/qor/notification v0.0.0-20181014061619-c4c002490b78
+	github.com/qor/page_builder v0.0.0-20190619064344-2e4b0d81d42d
 	github.com/qor/publish2 v0.0.0-20200729081509-d97fdb5620a5
 	github.com/qor/qor v0.0.0-20210618082622-a52aba0a0ce1 // indirect
 	github.com/qor/redirect_back v0.0.0-20170907030740-b4161ed6f848
@@ -68,6 +87,7 @@ require (
 	github.com/qor/seo v0.0.0-20220606095207-9d29f046afc0
 	github.com/qor/session v0.0.0-20170907035918-8206b0adab70 // indirect
 	github.com/qor/sorting v0.0.0-20201215093431-99d91cb78b78
+	github.com/qor/transition v0.0.0-20201010035849-dcb875909eb7
 	github.com/qor/validations v0.0.0-20171228122639-f364bca61b46 // indirect
 	github.com/qor/widget v0.0.0-20201013030503-4409667ff65c
 	github.com/qor/wildcard_router v0.0.0-20171031035524-56710e5bb5a4
