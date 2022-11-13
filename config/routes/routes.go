@@ -2,10 +2,12 @@ package routes
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/go-chi/chi"
 	"github.com/joaootav/system_supermarket/app/home"
+	"github.com/joaootav/system_supermarket/app/pages"
 	"github.com/joaootav/system_supermarket/config/admin"
 	"github.com/joaootav/system_supermarket/config/application"
 	"github.com/joaootav/system_supermarket/config/auth"
@@ -18,7 +20,7 @@ import (
 
 var rootMux *http.ServeMux
 
-func Router() *http.ServeMux {
+func SetupRouter() *http.ServeMux {
 	if rootMux == nil {
 		router := chi.NewRouter()
 
@@ -65,9 +67,15 @@ func Router() *http.ServeMux {
 
 		rootMux = http.NewServeMux()
 
+		// serve static content
+		for _, path := range []string{"system", "javascripts", "stylesheets", "images", "dist", "vendors"} {
+			rootMux.Handle(fmt.Sprintf("/%s/", path), utils.FileServer(http.Dir("public")))
+		}
+
 		rootMux.Handle("/auth/", auth.Auth.NewServeMux())
 		rootMux.Handle("/", Application.NewServeMux())
 		Application.Use(home.New(&home.Config{}))
+		Application.Use(pages.New(&pages.Config{}))
 
 		// Mount admin interface to mux
 		admin.Admin.MountTo("/admin", database.Mux)

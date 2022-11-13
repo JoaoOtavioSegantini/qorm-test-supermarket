@@ -27,11 +27,9 @@ func main() {
 	database.Connect(os.Getenv("DATABASE_URL"))
 	database.Migrate()
 	router := gin.Default()
-	router.Static("/public", "./public")
-	router.StaticFile("favicon.ico", "./public/favicon.ico")
 
 	router.Any("/admin/*resources", gin.WrapH(database.Mux))
-	router.Use(gin.WrapH(routes.Router()))
+	router.Use(gin.WrapH(routes.SetupRouter()))
 
 	log.Printf("Listening on: %v\n", config.Config.Port)
 	router.Run(fmt.Sprintf(":%d", config.Config.Port))
