@@ -9,6 +9,7 @@ type User struct {
 	gorm.Model
 	sorting.Sorting
 	Group     []UserGroup
+	GroupID   uint
 	Email     string `unique;form:"email"`
 	Password  string
 	Name      string `form:"name"`
@@ -22,6 +23,7 @@ type UserGroup struct {
 	//l10n.Locale
 	sorting.Sorting
 	Name string //`l10n:"sync"`
+
 }
 
 func (user User) DisplayName() string {

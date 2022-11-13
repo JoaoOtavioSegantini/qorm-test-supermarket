@@ -4,6 +4,7 @@ import "github.com/jinzhu/gorm"
 
 type Inventory struct {
 	gorm.Model
-	Produto    Product
+	Product    Product
+	ProductID  uint
 	Quantidade float64
 }

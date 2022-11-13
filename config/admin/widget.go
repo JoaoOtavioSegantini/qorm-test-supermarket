@@ -12,7 +12,6 @@ import (
 	"github.com/qor/banner_editor"
 	"github.com/qor/l10n"
 	"github.com/qor/media/oss"
-	"github.com/qor/publish2"
 	"github.com/qor/qor"
 	"github.com/qor/qor/resource"
 	"github.com/qor/sorting"
@@ -23,9 +22,9 @@ var Widgets *widget.Widgets
 
 type QorWidgetSetting struct {
 	widget.QorWidgetSetting
-	publish2.Version
-	publish2.Schedule
-	publish2.Visible
+	// publish2.Version
+	// publish2.Schedule
+	// publish2.Visible
 	l10n.Locale
 }
 

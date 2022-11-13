@@ -5,7 +5,8 @@ import "github.com/jinzhu/gorm"
 type OnSale struct {
 	gorm.Model
 	Nome        string
-	Produto     Product
+	Product     Product
+	ProductID   uint
 	Porcentagem float64
 	Status      bool
 }

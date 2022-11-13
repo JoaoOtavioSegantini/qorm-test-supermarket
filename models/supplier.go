@@ -1,6 +1,8 @@
 package models
 
-import "gorm.io/gorm"
+import "github.com/jinzhu/gorm"
+
+//import "gorm.io/gorm"
 
 type Supplier struct {
 	gorm.Model

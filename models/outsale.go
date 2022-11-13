@@ -8,7 +8,8 @@ import (
 
 type OutSale struct {
 	gorm.Model
-	Producto     Product
+	Product      Product
+	ProductID    uint
 	ValorDaVenda float64
 	Data         time.Time
 }

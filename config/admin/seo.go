@@ -24,7 +24,7 @@ func SetupSEO(Admin *admin.Admin) {
 			context := make(map[string]string)
 			context["Name"] = product.Name
 			context["Code"] = fmt.Sprint(product.ID)
-			context["Fornecedor"] = product.Fornecedor.Nome
+			context["Fornecedor"] = product.Supplier.Nome
 			return context
 		},
 	})
