@@ -30,7 +30,8 @@ var DB *gorm.DB
 var dbError error
 var Mux *http.ServeMux
 
-func Connect(connectionString string) {
+// connect with chosen database
+func Connect() {
 
 	if dbError != nil {
 		log.Fatal(dbError)
@@ -48,12 +49,16 @@ func Migrate() {
 		&models.Category{},
 		&models.Inventory{},
 		&models.Product{},
+		&models.Collection{},
 		&models.OnSale{},
 		&models.OutSale{},
 		&models.Sale{},
 		&models.Supplier{},
 		&models.User{},
 		&models.UserGroup{},
+		&models.Address{},
+		&models.AuthIdentity{},
+		&models.AuthInfo{},
 		&models.MySEOSetting{},
 		&settings.Setting{},
 		&settings.MediaLibrary{},
@@ -63,7 +68,21 @@ func Migrate() {
 		&activity.QorActivity{},
 		&blogs.Page{}, &blogs.Article{},
 		&help.QorHelpEntry{},
+		&models.ProductVariation{},
+		&models.ProductImage{},
+		&models.ColorVariation{},
+		&models.ColorVariationImage{}, models.SizeVariation{},
+		&models.Color{},
+		&models.Size{},
+		&models.Material{},
+		&models.Category{},
+		&models.Collection{},
+		&models.Address{},
+		&models.Order{}, &models.OrderItem{},
+		&models.DeliveryMethod{},
+		&models.Store{},
 	)
+
 	log.Println("Database Migration Completed!")
 }
 
