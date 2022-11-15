@@ -26,9 +26,10 @@ func init() {
 	Admin.AddResource(&asset_manager.AssetManager{}, &admin.Config{Invisible: true})
 
 	Admin.AddResource(&models.UserGroup{}, &admin.Config{Menu: []string{"User Management"}, Name: "UserGroup"})
-	Admin.AddResource(&models.User{}, &admin.Config{Menu: []string{"User Management"}, Name: "User"})
-	Admin.AddResource(&models.Category{}, &admin.Config{Menu: []string{"Product Management"}})
-	Admin.AddResource(&models.Product{}, &admin.Config{Menu: []string{"Product Management"}})
+	//	Admin.AddResource(&models.User{}, &admin.Config{Menu: []string{"User Management"}, Name: "User"})
+	//Admin.AddResource(&models.Category{}, &admin.Config{Menu: []string{"Product Management"}})
+	//Admin.AddResource(&models.Product{}, &admin.Config{Menu: []string{"Product Management"}})
+	Admin.AddResource(&models.Order{}, &admin.Config{Menu: []string{"Order Management"}})
 
 	// Add action bar
 	ActionBar = action_bar.New(Admin)
@@ -46,9 +47,10 @@ func init() {
 	Help := Admin.NewResource(&help.QorHelpEntry{})
 	Help.Meta(&admin.Meta{Name: "Body", Config: &admin.RichEditorConfig{AssetManager: AssetManager}})
 
+	SetupNotification(Admin)
 	SetupWorker(Admin)
-
 	SetupSEO(Admin)
 	SetupWidget(Admin)
+	SetupDashboard(Admin)
 
 }

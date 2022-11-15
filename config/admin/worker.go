@@ -117,12 +117,12 @@ func SetupWorker(Admin *admin.Admin) {
 			qorJob.AddLog("Exporting products...")
 
 			context := &qor.Context{DB: database.DB}
-			fileName := fmt.Sprintf("/public/downloads/products.%v.csv", time.Now().UnixNano())
+			fileName := fmt.Sprintf("/downloads/products.%v.csv", time.Now().UnixNano())
 			if err := ProductExchange.Export(
 				csv.New(filepath.Join("public", fileName)),
 				context,
 				func(progress exchange.Progress) error {
-					qorJob.AddLog(fmt.Sprintf("%v/%v Exporting product %v", progress.Current, progress.Total, progress.Value.(*models.Product).ID))
+					qorJob.AddLog(fmt.Sprintf("%v/%v Exporting product %v", progress.Current, progress.Total, progress.Value.(*models.Product).Code))
 					return nil
 				},
 			); err != nil {
