@@ -6,8 +6,10 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi"
+	"github.com/joaootav/system_supermarket/app/account"
 	"github.com/joaootav/system_supermarket/app/home"
 	"github.com/joaootav/system_supermarket/app/pages"
+	"github.com/joaootav/system_supermarket/app/products"
 	"github.com/joaootav/system_supermarket/config/admin"
 	"github.com/joaootav/system_supermarket/config/application"
 	"github.com/joaootav/system_supermarket/config/auth"
@@ -20,6 +22,7 @@ import (
 
 var rootMux *http.ServeMux
 
+// Setup for application routes
 func SetupRouter() *http.ServeMux {
 	if rootMux == nil {
 		router := chi.NewRouter()
@@ -68,7 +71,7 @@ func SetupRouter() *http.ServeMux {
 		rootMux = http.NewServeMux()
 
 		// serve static content
-		for _, path := range []string{"system", "javascripts", "stylesheets", "images", "dist", "vendors"} {
+		for _, path := range []string{"system", "javascripts", "stylesheets", "images", "dist", "vendors", "assets", "downloads"} {
 			rootMux.Handle(fmt.Sprintf("/%s/", path), utils.FileServer(http.Dir("public")))
 		}
 
@@ -76,6 +79,8 @@ func SetupRouter() *http.ServeMux {
 		rootMux.Handle("/", Application.NewServeMux())
 		Application.Use(home.New(&home.Config{}))
 		Application.Use(pages.New(&pages.Config{}))
+		Application.Use(products.New(&products.Config{}))
+		Application.Use(account.New(&account.Config{}))
 
 		// Mount admin interface to mux
 		admin.Admin.MountTo("/admin", database.Mux)
