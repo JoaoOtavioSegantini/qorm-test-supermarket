@@ -1,4 +1,4 @@
-require('babel-register')
+require("@babel/register");
 
 const sass = require('gulp-sass')(require('sass'));
 const { parallel, src, dest, watch, series } = require("gulp");

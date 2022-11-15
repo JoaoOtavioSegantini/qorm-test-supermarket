@@ -11,12 +11,11 @@
   },
   "dependencies": {
     "@babel/core": "^7.20.2",
-    "babel-loader": "^9.1.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-es2015": "^6.24.1"
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.0"
   },
   "devDependencies": {
-    "babel-register": "^6.26.0",
+    "@babel/register": "^7.18.9",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
