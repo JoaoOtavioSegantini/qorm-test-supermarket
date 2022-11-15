@@ -70,6 +70,23 @@ func AddFuncMapMaker(view *render.Render) *render.Render {
 			return utils.GetCurrentUser(req)
 		}
 
+		funcMap["get_categories"] = func() (categories []models.Category) {
+			utils.GetDB(req).Find(&categories)
+			return
+		}
+
+		funcMap["related_products"] = func(cv models.ColorVariation) []models.Product {
+			var products []models.Product
+			utils.GetDB(req).Preload("ColorVariations").Limit(4).Find(&products, "id <> ?", cv.ProductID)
+			return products
+		}
+
+		funcMap["other_also_bought"] = func(cv models.ColorVariation) []models.Product {
+			var products []models.Product
+			utils.GetDB(req).Preload("ColorVariations").Order("id ASC").Limit(8).Find(&products, "id <> ?", cv.ProductID)
+			return products
+		}
+
 		return funcMap
 	}
 
