@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joaootav/system_supermarket/config"
@@ -24,7 +23,7 @@ func main() {
 
 	gin.SetMode(gin.ReleaseMode)
 
-	database.Connect(os.Getenv("DATABASE_URL"))
+	database.Connect()
 	database.Migrate()
 	router := gin.Default()
 

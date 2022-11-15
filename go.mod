@@ -5,22 +5,29 @@ go 1.19
 require gorm.io/gorm v1.24.1
 
 require (
+	cloud.google.com/go v0.34.0 // indirect
 	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/Shaked/gomobiledetect v0.0.0-20171211181707-25f014f66568 // indirect
+	github.com/aws/aws-sdk-go v1.34.20 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/disintegration/imaging v1.6.2 // indirect
 	github.com/frankban/quicktest v1.5.0 // indirect
+	github.com/golang/protobuf v1.5.0 // indirect
 	github.com/google/btree v1.0.0 // indirect
 	github.com/google/go-cmp v0.5.5 // indirect
+	github.com/google/go-github v17.0.0+incompatible // indirect
+	github.com/google/go-querystring v1.0.0 // indirect
 	github.com/jinzhu/copier v0.0.0-20190924061706-b57f9002281a // indirect
+	github.com/jmespath/go-jmespath v0.3.0 // indirect
 	github.com/kr/pretty v0.3.0 // indirect
 	github.com/kr/text v0.2.0 // indirect
+	github.com/mrjones/oauth v0.0.0-20190623134757-126b35219450 // indirect
 	github.com/peterbourgon/diskv v2.0.1+incompatible // indirect
 	github.com/qor/audited v0.0.0-20171228121055-b52c9c2f0571 // indirect
 	github.com/qor/cache v0.0.0-20171031031927-c9d48d1f13ba // indirect
 	github.com/qor/i18n v0.0.0-20211222090924-1c3ad686ead6 // indirect
 	github.com/qor/mailer v0.0.0-20180329083248-0555e49f99ac // indirect
-	github.com/qor/oss v0.0.0-20191031055114-aef9ba66bf76 // indirect
+	github.com/qor/oss v0.0.0-20210412121326-3c5583a62015 // indirect
 	github.com/qor/publish v0.0.0-20181014061411-abfbacee9e0d // indirect
 	github.com/qor/render v1.1.1 // indirect
 	github.com/qor/serializable_meta v0.0.0-20180510060738-5fd8542db417 // indirect
@@ -31,7 +38,9 @@ require (
 	github.com/shabbyrobe/xmlwriter v0.0.0-20200208144257-9fca06d00ffa // indirect
 	github.com/tealeg/xlsx/v3 v3.2.0 // indirect
 	golang.org/x/image v0.0.0-20191009234506-e7c1f5e7dbb8 // indirect
+	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d // indirect
 	golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543 // indirect
+	google.golang.org/appengine v1.4.0 // indirect
 )
 
 require (
@@ -67,11 +76,13 @@ require (
 	github.com/qor/action_bar v0.0.0-20190314070413-136e5e2c5b8c
 	github.com/qor/activity v0.0.0-20201007030921-c3c84bfbfba2
 	github.com/qor/admin v1.2.0 // indirect
+	github.com/qor/amazon-pay-sdk-go v0.0.0-20200904031609-fd2ebca82897
 	github.com/qor/assetfs v0.0.0-20170713023933-ff57fdc13a14 // indirect
 	github.com/qor/auth v0.0.0-20200821034127-11d4c974507d
 	github.com/qor/auth_themes v0.0.0-20190103025702-000e8ac9b42d
 	github.com/qor/banner_editor v0.0.0-20181014061955-007b0b21481e
 	github.com/qor/exchange v0.0.0-20201013055955-8e12e25ac3bf
+	github.com/qor/gomerchant v0.0.0-20211221101335-d64a97293d4a
 	github.com/qor/help v0.0.0-20171031093129-202965d1156a
 	github.com/qor/l10n v0.0.0-20181031091737-2ca95fb3b4dd
 	github.com/qor/location v0.0.0-20181014061834-8c618bfef8ed
