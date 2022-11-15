@@ -69,7 +69,7 @@ func (App) ConfigureAdmin(Admin *admin.Admin) {
 			return nil
 		},
 	})
-	Admin.AddResource(PageBuilderWidgets, &admin.Config{Menu: []string{"Pages Management"}})
+	//Admin.AddResource(PageBuilderWidgets, &admin.Config{Menu: []string{"Pages Management"}})
 
 	page := page_builder.New(&page_builder.Config{
 		Admin:       Admin,
