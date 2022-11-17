@@ -7,6 +7,8 @@ import (
 	"github.com/joaootav/system_supermarket/config/utils"
 	"github.com/joaootav/system_supermarket/models"
 	"github.com/qor/render"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 // Controller products controller
@@ -21,9 +23,9 @@ func (ctrl Controller) Index(w http.ResponseWriter, req *http.Request) {
 		tx       = utils.GetDB(req)
 	)
 
-	tx.Preload("Category").Find(&Products)
+	tx.Preload("ColorVariations").Find(&Products)
 
-	ctrl.View.Execute("index", map[string]interface{}{}, req, w)
+	ctrl.View.Execute("index", map[string]interface{}{"Products": Products}, req, w)
 }
 
 // Gender products gender page
@@ -33,7 +35,10 @@ func (ctrl Controller) Gender(w http.ResponseWriter, req *http.Request) {
 		tx       = utils.GetDB(req)
 	)
 
-	tx.Where(&models.Product{Gender: utils.URLParam("gender", req)}).Preload("Category").Find(&Products)
+	param := utils.URLParam("gender", req)
+	genre := cases.Title(language.Und).String(param)
+
+	tx.Where(&models.Product{Gender: genre}).Preload("ColorVariations").Find(&Products)
 
 	ctrl.View.Execute("gender", map[string]interface{}{"Products": Products}, req, w)
 }
