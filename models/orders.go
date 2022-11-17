@@ -6,11 +6,10 @@ import (
 	"time"
 
 	"github.com/jinzhu/gorm"
+	db "github.com/joaootav/system_supermarket/database"
 
 	"github.com/qor/transition"
 )
-
-var db *gorm.DB
 
 type PaymentMethod = string
 
@@ -108,7 +107,7 @@ func (item OrderItem) IsCart() bool {
 func (item *OrderItem) loadSizeVariation() {
 	if item.SizeVariation == nil {
 		item.SizeVariation = &SizeVariation{}
-		db.Model(item).Preload("Size").Preload("ColorVariation.Product").Preload("ColorVariation.Color").Association("SizeVariation").Find(item.SizeVariation)
+		db.DB.Model(item).Preload("Size").Preload("ColorVariation.Product").Preload("ColorVariation.Color").Association("SizeVariation").Find(item.SizeVariation)
 	}
 }
 

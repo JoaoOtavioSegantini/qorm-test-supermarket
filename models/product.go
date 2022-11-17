@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/jinzhu/gorm"
+	db "github.com/joaootav/system_supermarket/database"
 	"github.com/qor/l10n"
 	"github.com/qor/media"
 	"github.com/qor/media/media_library"
@@ -204,7 +205,7 @@ type ColorVariation struct {
 func (colorVariation ColorVariation) ViewPath() string {
 	defaultPath := ""
 	var product Product
-	if !db.First(&product, "id = ?", colorVariation.ProductID).RecordNotFound() {
+	if !db.DB.First(&product, "id = ?", colorVariation.ProductID).RecordNotFound() {
 		defaultPath = fmt.Sprintf("/products/%s_%s", product.Code, colorVariation.ColorCode)
 	}
 	return defaultPath
@@ -245,7 +246,7 @@ type SizeVariation struct {
 
 func SizeVariations() []SizeVariation {
 	sizeVariations := []SizeVariation{}
-	if err := db.Preload("ColorVariation.Color").Preload("ColorVariation.Product").Preload("Size").Find(&sizeVariations).Error; err != nil {
+	if err := db.DB.Preload("ColorVariation.Color").Preload("ColorVariation.Product").Preload("Size").Find(&sizeVariations).Error; err != nil {
 		log.Fatalf("query sizeVariations (%v) failure, got err %v", sizeVariations, err)
 		return sizeVariations
 	}
