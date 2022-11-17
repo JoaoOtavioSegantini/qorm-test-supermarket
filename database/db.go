@@ -11,18 +11,10 @@ import (
 
 	"github.com/jinzhu/gorm"
 	"github.com/joaootav/system_supermarket/config"
-	"github.com/joaootav/system_supermarket/models"
-	"github.com/joaootav/system_supermarket/models/blogs"
-	"github.com/joaootav/system_supermarket/models/settings"
-	"github.com/qor/activity"
-	"github.com/qor/banner_editor"
-	"github.com/qor/help"
 	"github.com/qor/l10n"
 	"github.com/qor/media"
-	"github.com/qor/media/asset_manager"
 	"github.com/qor/publish2"
 	"github.com/qor/sorting"
-	"github.com/qor/transition"
 	"github.com/qor/validations"
 )
 
@@ -42,48 +34,6 @@ func Connect() {
 	Mux = http.NewServeMux()
 
 	log.Println("Connected to Database!")
-}
-
-func Migrate() {
-	DB.AutoMigrate(
-		&models.Category{},
-		&models.Inventory{},
-		&models.Product{},
-		&models.Collection{},
-		&models.OnSale{},
-		&models.OutSale{},
-		&models.Sale{},
-		&models.Supplier{},
-		&models.User{},
-		&models.UserGroup{},
-		&models.Address{},
-		&models.AuthIdentity{},
-		&models.AuthInfo{},
-		&models.MySEOSetting{},
-		&settings.Setting{},
-		&settings.MediaLibrary{},
-		&asset_manager.AssetManager{},
-		&banner_editor.QorBannerEditorSetting{},
-		&transition.StateChangeLog{},
-		&activity.QorActivity{},
-		&blogs.Page{}, &blogs.Article{},
-		&help.QorHelpEntry{},
-		&models.ProductVariation{},
-		&models.ProductImage{},
-		&models.ColorVariation{},
-		&models.ColorVariationImage{}, models.SizeVariation{},
-		&models.Color{},
-		&models.Size{},
-		&models.Material{},
-		&models.Category{},
-		&models.Collection{},
-		&models.Address{},
-		&models.Order{}, &models.OrderItem{},
-		&models.DeliveryMethod{},
-		&models.Store{},
-	)
-
-	log.Println("Database Migration Completed!")
 }
 
 func init() {

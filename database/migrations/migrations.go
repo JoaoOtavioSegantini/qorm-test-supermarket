@@ -32,6 +32,20 @@ func init() {
 		&activity.QorActivity{},
 		&blogs.Page{}, &blogs.Article{},
 		&help.QorHelpEntry{},
+		&models.Collection{},
+		&models.Address{},
+		&models.AuthIdentity{},
+		&models.AuthInfo{},
+		&models.ProductVariation{},
+		&models.ProductImage{},
+		&models.ColorVariation{},
+		&models.ColorVariationImage{}, models.SizeVariation{},
+		&models.Color{},
+		&models.Size{},
+		&models.Material{},
+		&models.Order{}, &models.OrderItem{},
+		&models.DeliveryMethod{},
+		&models.Store{},
 	)
 	fmt.Println("--> Migrations completed.")
 
