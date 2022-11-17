@@ -6,6 +6,7 @@
           {{ range $category := get_categories }}
             <li><a href="{{ $category.DefaultPath }}">{{$category.Nome}}</a></li>
           {{ end }}
+           <li><a href="/products">All</a></li>
       </ul>
 
       <h2>COLORS</h2>
