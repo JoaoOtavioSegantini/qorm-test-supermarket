@@ -1,0 +1,8 @@
+<div>
+    {{ range .articles }}
+    <ul>
+        <li> {{ .Title }}</li>
+        <a href="/blog/{{ .TitleWithSlug.Slug }}">{{ .Title }}</a>
+    </ul>
+    {{ end }}
+</div>

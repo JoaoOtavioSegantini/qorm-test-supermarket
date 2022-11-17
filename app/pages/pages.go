@@ -37,7 +37,9 @@ func (app App) ConfigureApplication(application *application.Application) {
 
 	funcmapmaker.AddFuncMapMaker(controller.View)
 	app.ConfigureAdmin(application.Admin)
-	application.Router.Get("/blog", controller.Index)
+	application.Router.Get("/blog", controller.List)
+	application.Router.Get("/blog/{slug}", controller.Index)
+
 }
 
 // ConfigureAdmin configure admin interface

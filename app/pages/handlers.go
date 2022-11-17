@@ -19,7 +19,20 @@ func (ctrl Controller) Index(w http.ResponseWriter, req *http.Request) {
 	var article blogs.Article
 
 	database := utils.GetDB(req)
-	database.Preload("Author").Find(&article)
 
+	i := database.Preload("Author").Where("title_with_slug = ?", utils.URLParam("slug", req)).Find(&article).RecordNotFound()
+	if i {
+		return
+
+	}
 	ctrl.View.Execute("index", gin.H{"article": article}, req, w)
+}
+
+func (ctrl Controller) List(w http.ResponseWriter, req *http.Request) {
+	var articles []blogs.Article
+
+	database := utils.GetDB(req)
+	database.Find(&articles)
+
+	ctrl.View.Execute("list", gin.H{"articles": articles}, req, w)
 }
