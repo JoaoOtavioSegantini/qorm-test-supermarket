@@ -8,6 +8,7 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/joaootav/system_supermarket/app/account"
 	"github.com/joaootav/system_supermarket/app/home"
+	"github.com/joaootav/system_supermarket/app/orders"
 	"github.com/joaootav/system_supermarket/app/pages"
 	"github.com/joaootav/system_supermarket/app/products"
 	"github.com/joaootav/system_supermarket/config/admin"
@@ -81,6 +82,7 @@ func SetupRouter() *http.ServeMux {
 		Application.Use(pages.New(&pages.Config{}))
 		Application.Use(products.New(&products.Config{}))
 		Application.Use(account.New(&account.Config{}))
+		Application.Use(orders.New(&orders.Config{}))
 
 		// Mount admin interface to mux
 		admin.Admin.MountTo("/admin", database.Mux)

@@ -29,7 +29,7 @@ func init() {
 	//	Admin.AddResource(&models.User{}, &admin.Config{Menu: []string{"User Management"}, Name: "User"})
 	//Admin.AddResource(&models.Category{}, &admin.Config{Menu: []string{"Product Management"}})
 	//Admin.AddResource(&models.Product{}, &admin.Config{Menu: []string{"Product Management"}})
-	Admin.AddResource(&models.Order{}, &admin.Config{Menu: []string{"Order Management"}})
+	//Admin.AddResource(&models.Order{}, &admin.Config{Menu: []string{"Order Management"}})
 
 	// Add action bar
 	ActionBar = action_bar.New(Admin)
