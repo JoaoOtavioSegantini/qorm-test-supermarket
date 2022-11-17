@@ -8,6 +8,7 @@ import (
 	"github.com/joaootav/system_supermarket/config"
 	"github.com/joaootav/system_supermarket/config/routes"
 	"github.com/joaootav/system_supermarket/database"
+	"github.com/joaootav/system_supermarket/database/migrations"
 	"github.com/joho/godotenv"
 )
 
@@ -24,7 +25,7 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 
 	database.Connect()
-	database.Migrate()
+	migrations.AutoMigrate()
 	router := gin.Default()
 
 	router.Any("/admin/*resources", gin.WrapH(database.Mux))
