@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"net/http"
 
+	"github.com/joaootav/system_supermarket/config"
 	"github.com/joaootav/system_supermarket/config/admin"
 	"github.com/joaootav/system_supermarket/config/i18n"
 	"github.com/joaootav/system_supermarket/config/utils"
@@ -85,6 +86,14 @@ func AddFuncMapMaker(view *render.Render) *render.Render {
 			var products []models.Product
 			utils.GetDB(req).Preload("ColorVariations").Order("id ASC").Limit(8).Find(&products, "id <> ?", cv.ProductID)
 			return products
+		}
+
+		funcMap["format_price"] = func(price interface{}) string {
+			return utils.FormatPrice(price)
+		}
+
+		funcMap["amazon_payment_gateway"] = func() interface{} {
+			return config.Config.AmazonPay
 		}
 
 		return funcMap
