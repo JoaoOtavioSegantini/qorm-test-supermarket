@@ -40,6 +40,7 @@
               <a href="/men">men</a>
               <a href="/women">women</a>
               <a href="/kids">kids</a>
+              <a href="/blog">Blog</a>
             </div>
 
             <div class="header__func {{ if current_user }}header__func-login{{end}}">
@@ -113,6 +114,7 @@
           </div>
         </div>
     </footer>
-        <script src="/dist/app.js"></script>
+      <script src="/dist/app.js"></script>
+      {{render "shared/amazon_pay"}}
   </body>
 </html>
