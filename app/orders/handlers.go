@@ -2,7 +2,6 @@ package orders
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"strconv"
 
@@ -30,6 +29,8 @@ var decoder = schema.NewDecoder()
 // Cart shopping cart
 func (ctrl Controller) Cart(w http.ResponseWriter, req *http.Request) {
 	order := getCurrentOrderWithItems(w, req)
+	w.WriteHeader(http.StatusOK)
+
 	ctrl.View.Execute("cart", map[string]interface{}{"Order": order}, req, w)
 }
 
@@ -37,6 +38,8 @@ func (ctrl Controller) Cart(w http.ResponseWriter, req *http.Request) {
 func (ctrl Controller) Checkout(w http.ResponseWriter, req *http.Request) {
 	hasAmazon := req.URL.Query().Get("access_token")
 	order := getCurrentOrderWithItems(w, req)
+	w.WriteHeader(http.StatusOK)
+
 	ctrl.View.Execute("checkout", map[string]interface{}{"Order": order, "HasAmazon": hasAmazon}, req, w)
 }
 
@@ -98,6 +101,8 @@ func (ctrl Controller) CompleteCreditCard(w http.ResponseWriter, req *http.Reque
 
 // CheckoutSuccess checkout success page
 func (ctrl Controller) CheckoutSuccess(w http.ResponseWriter, req *http.Request) {
+	w.WriteHeader(http.StatusOK)
+
 	ctrl.View.Execute("success", map[string]interface{}{}, req, w)
 }
 
@@ -152,20 +157,20 @@ func getCurrentOrder(w http.ResponseWriter, req *http.Request) *models.Order {
 	)
 
 	if cartID != "" {
-		log.Print("caiu ak")
+		// log.Print("caiu ak")
 
 		if currentUser != nil && !tx.NewRecord(currentUser) {
-			log.Print("ak")
-			log.Printf("%v", order)
-			log.Printf("cart id: %v", cartID)
+			// log.Print("ak")
+			// log.Printf("%v", order)
+			// log.Printf("cart id: %v", cartID)
 
 			if !tx.First(&order, "ID = ? AND (user_id = ? OR user_id IS NULL)", cartID, currentUser.ID).RecordNotFound() && order.UserID == nil {
-				log.Print("nessa função")
+				//	log.Print("nessa função")
 
 				tx.Model(&order).Update("UserID", currentUser.ID)
 			}
 		} else {
-			log.Print("caiu aqui")
+			//log.Print("caiu aqui")
 			tx.First(&order, "ID = ? AND user_id IS NULL", cartID)
 		}
 	}

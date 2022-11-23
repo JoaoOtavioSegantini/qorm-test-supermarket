@@ -22,9 +22,10 @@ func (ctrl Controller) Index(w http.ResponseWriter, req *http.Request) {
 
 	i := database.Preload("Author").Where("title_with_slug = ?", utils.URLParam("slug", req)).Find(&article).RecordNotFound()
 	if i {
-		return
+		utils.AddFlashMessage(w, req, "Record not found", "error")
 
 	}
+	w.WriteHeader(http.StatusOK)
 	ctrl.View.Execute("index", gin.H{"article": article}, req, w)
 }
 
@@ -33,6 +34,7 @@ func (ctrl Controller) List(w http.ResponseWriter, req *http.Request) {
 
 	database := utils.GetDB(req)
 	database.Find(&articles)
+	w.WriteHeader(http.StatusOK)
 
 	ctrl.View.Execute("list", gin.H{"articles": articles}, req, w)
 }

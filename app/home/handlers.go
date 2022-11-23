@@ -15,6 +15,8 @@ type Controller struct {
 
 // Index home index page
 func (ctrl Controller) Index(w http.ResponseWriter, req *http.Request) {
+	w.WriteHeader(http.StatusOK)
+
 	ctrl.View.Execute("index", map[string]interface{}{}, req, w)
 }
 

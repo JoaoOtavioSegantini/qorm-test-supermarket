@@ -24,6 +24,7 @@ func (ctrl Controller) Index(w http.ResponseWriter, req *http.Request) {
 	)
 
 	tx.Preload("ColorVariations").Find(&Products)
+	w.WriteHeader(http.StatusOK)
 
 	ctrl.View.Execute("index", map[string]interface{}{"Products": Products}, req, w)
 }
@@ -39,6 +40,7 @@ func (ctrl Controller) Gender(w http.ResponseWriter, req *http.Request) {
 	genre := cases.Title(language.Und).String(param)
 
 	tx.Where(&models.Product{Gender: genre}).Preload("ColorVariations").Find(&Products)
+	w.WriteHeader(http.StatusOK)
 
 	ctrl.View.Execute("gender", map[string]interface{}{"Products": Products}, req, w)
 }
@@ -63,6 +65,7 @@ func (ctrl Controller) Show(w http.ResponseWriter, req *http.Request) {
 	}
 
 	tx.Preload("Product").Preload("Color").Preload("SizeVariations.Size").Where(&models.ColorVariation{ProductID: product.ID, ColorCode: colorCode}).First(&colorVariation)
+	w.WriteHeader(http.StatusOK)
 
 	ctrl.View.Execute("show", map[string]interface{}{"CurrentColorVariation": colorVariation}, req, w)
 }
@@ -80,6 +83,7 @@ func (ctrl Controller) Category(w http.ResponseWriter, req *http.Request) {
 	}
 
 	tx.Where(&models.Product{CategoryID: category.ID}).Preload("ColorVariations").Find(&Products)
+	w.WriteHeader(http.StatusOK)
 
 	ctrl.View.Execute("category", map[string]interface{}{"CategoryName": category.Nome, "Products": Products}, req, w)
 }
