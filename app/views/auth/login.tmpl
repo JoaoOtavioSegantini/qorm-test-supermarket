@@ -1,5 +1,5 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" media="all" href="/assets/qor_auth.css">
+<link rel="stylesheet" media="all" href="/dist/custom_auth.css">
 
  <div id="container-login">
    {{$flashes := .Flashes}}
@@ -17,7 +17,7 @@
     {{if .Auth.GetProvider "password"}}
       <form action="{{.AuthURL "password/login"}}" method="POST">
        <div class="remember-me">
-                <span style="color: #757575">Log in to your account</span>
+                <span style="color: #757575">{{ t "auth.form.sign_in_text_title" }}</span>
             </div>
 
       <div class="input">

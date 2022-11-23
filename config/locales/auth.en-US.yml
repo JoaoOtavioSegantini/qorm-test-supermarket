@@ -13,6 +13,7 @@ en-US:
       password_confirm: "Confirm Password"
       password_confirm_placeholder: "Confirm Password"
       sign_in: "Sign in"
+      sign_in_text_title: "Log in to your account"
       sign_up: "Sign Up"
       reset_password: "Reset password"
       forgot_password: "Continue"
