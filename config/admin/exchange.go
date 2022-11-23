@@ -9,10 +9,12 @@ import (
 	"github.com/qor/validations"
 )
 
-// ProductExchange product exchange
-var ProductExchange = exchange.NewResource(&models.Product{}, exchange.Config{PrimaryField: "Code"})
+func SetupProductExchange() *exchange.Resource {
 
-func init() {
+	// ProductExchange product exchange
+	ProductExchange := exchange.NewResource(&models.Product{}, exchange.Config{PrimaryField: "Code"})
+
+	// Define columns are exportable/importable
 	ProductExchange.Meta(&exchange.Meta{Name: "Code"})
 	ProductExchange.Meta(&exchange.Meta{Name: "Name"})
 	ProductExchange.Meta(&exchange.Meta{Name: "Price"})
@@ -25,4 +27,6 @@ func init() {
 			return nil
 		},
 	})
+
+	return ProductExchange
 }

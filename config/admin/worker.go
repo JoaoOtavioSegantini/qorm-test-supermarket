@@ -21,6 +21,8 @@ import (
 func SetupWorker(Admin *admin.Admin) {
 	Worker := worker.New()
 
+	var ProductExchange = SetupProductExchange()
+
 	type sendNewsletterArgument struct {
 		Subject      string
 		Content      string `sql:"size:65532"`
@@ -116,16 +118,20 @@ func SetupWorker(Admin *admin.Admin) {
 		Handler: func(arg interface{}, qorJob worker.QorJobInterface) error {
 			qorJob.AddLog("Exporting products...")
 
+			// Define context environment
 			context := &qor.Context{DB: database.DB}
+
 			fileName := fmt.Sprintf("/downloads/products.%v.csv", time.Now().UnixNano())
-			if err := ProductExchange.Export(
+			err := ProductExchange.Export(
 				csv.New(filepath.Join("public", fileName)),
 				context,
 				func(progress exchange.Progress) error {
 					qorJob.AddLog(fmt.Sprintf("%v/%v Exporting product %v", progress.Current, progress.Total, progress.Value.(*models.Product).Code))
 					return nil
 				},
-			); err != nil {
+			)
+
+			if err != nil {
 				qorJob.AddLog(err.Error())
 			}
 
