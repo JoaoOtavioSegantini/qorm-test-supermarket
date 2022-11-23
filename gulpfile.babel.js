@@ -1,3 +1,5 @@
+'use strict';
+
 require("@babel/register");
 
 const sass = require('gulp-sass')(require('sass'));

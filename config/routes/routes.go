@@ -72,11 +72,10 @@ func SetupRouter() *http.ServeMux {
 		rootMux = http.NewServeMux()
 
 		// serve static content
-		for _, path := range []string{"system", "javascripts", "stylesheets", "images", "dist", "vendors", "assets", "downloads"} {
+		for _, path := range []string{"system", "javascripts", "stylesheets", "images", "dist", "vendors", "downloads"} {
 			rootMux.Handle(fmt.Sprintf("/%s/", path), utils.FileServer(http.Dir("public")))
 		}
 
-		rootMux.Handle("/auth/", auth.Auth.NewServeMux())
 		rootMux.Handle("/", Application.NewServeMux())
 		Application.Use(home.New(&home.Config{}))
 		Application.Use(pages.New(&pages.Config{}))
