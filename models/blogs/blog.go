@@ -3,6 +3,7 @@ package blogs
 import (
 	"github.com/jinzhu/gorm"
 	"github.com/joaootav/system_supermarket/models"
+	"github.com/qor/media/oss"
 	"github.com/qor/publish2"
 	"github.com/qor/slug"
 )
@@ -14,6 +15,7 @@ type Article struct {
 	Title         string
 	Content       string `gorm:"type:text"`
 	TitleWithSlug slug.Slug
+	Image         oss.OSS
 	publish2.Version
 	publish2.Schedule
 	publish2.Visible
@@ -25,3 +27,10 @@ type Article struct {
 
 // 	return b[0]
 // }
+
+func (article Article) DefaultPath() string {
+	if article.Image.Url != "" {
+		return article.Image.Url
+	}
+	return "/images/article.png"
+}
