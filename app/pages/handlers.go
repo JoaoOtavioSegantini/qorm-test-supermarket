@@ -33,7 +33,7 @@ func (ctrl Controller) List(w http.ResponseWriter, req *http.Request) {
 	var articles []blogs.Article
 
 	database := utils.GetDB(req)
-	database.Find(&articles)
+	database.Preload("Author").Find(&articles)
 	w.WriteHeader(http.StatusOK)
 
 	ctrl.View.Execute("list", gin.H{"articles": articles}, req, w)
