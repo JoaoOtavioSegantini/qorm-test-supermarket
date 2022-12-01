@@ -1,3 +1,10 @@
 db:
-  adapter: sqlite
-  name: demo.db
+  # adapter: sqlite
+  # name: demo.db
+  adapter: mysql
+  name: cms
+  user: root
+  password: root
+  host: localhost
+  port: 3306
+
