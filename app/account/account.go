@@ -46,6 +46,8 @@ func (app App) ConfigureApplication(application *application.Application) {
 		r.With(auth.Authority.Authorize("logged_in_half_hour")).Post("/add_user_credit", controller.AddCredit)
 		r.Get("/profile", controller.Profile)
 		r.Post("/profile", controller.Update)
+		r.Post("/profile/billing_address", controller.UpdateAddress)
+		r.Post("/profile/shipping_address", controller.UpdateShippingAddress)
 	})
 }
 
