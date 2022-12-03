@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"path/filepath"
 
+	"github.com/joaootav/system_supermarket/config"
 	"github.com/joaootav/system_supermarket/database"
 	"github.com/joaootav/system_supermarket/models"
 	"github.com/qor/admin"
@@ -61,7 +63,7 @@ func SetupWidget(Admin *admin.Admin) {
 	Widgets.RegisterWidget(&widget.Widget{
 		Name:        "NormalBanner",
 		Templates:   []string{"banner", "banner2"},
-		PreviewIcon: "/public/images/Widget-NormalBanner.png",
+		PreviewIcon: "/images/Widget-NormalBanner.png",
 		Group:       "Banners",
 		Setting:     Admin.NewResource(&bannerArgument{}),
 		Context: func(context *widget.Context, setting interface{}) *widget.Context {
@@ -127,7 +129,7 @@ func SetupWidget(Admin *admin.Admin) {
 	imageRes := Admin.NewResource(&imageSetting{})
 	imageRes.Meta(&admin.Meta{Name: "Image"})
 
-	banner_editor.RegisterViewPath("github.com/joaootav/system_supermarket/app/views/banner_editor")
+	banner_editor.RegisterViewPath(filepath.Join(config.Root, "app/views/banner_editor"))
 	banner_editor.RegisterElement(&banner_editor.Element{
 		Icon:     "<i class=material-icons>short_text</i>",
 		Name:     "Add Header",
@@ -185,8 +187,8 @@ func SetupWidget(Admin *admin.Admin) {
 	})
 
 	banner_editor.RegisterExternalStylePath("//fonts.googleapis.com/css?family=Lato|Playfair+Display|Raleway")
-	banner_editor.RegisterExternalStylePath("/public/dist/qor.css")
-	banner_editor.RegisterExternalStylePath("/public/dist/home_banner.css")
+	banner_editor.RegisterExternalStylePath("/dist/qor.css")
+	banner_editor.RegisterExternalStylePath("/dist/home_banner.css")
 
 	bannerEditorResource := Admin.NewResource(&bannerEditorArgument{})
 	bannerEditorResource.Meta(&admin.Meta{Name: "Value", Config: &banner_editor.BannerEditorConfig{
@@ -207,7 +209,7 @@ func SetupWidget(Admin *admin.Admin) {
 	Widgets.RegisterWidget(&widget.Widget{
 		Name:        "BannerEditor",
 		Templates:   []string{"banner_editor"},
-		PreviewIcon: "/public/images/Widget-BannerEditor.png",
+		PreviewIcon: "/images/Widget-BannerEditor.png",
 		Setting:     bannerEditorResource,
 		Context: func(context *widget.Context, setting interface{}) *widget.Context {
 			context.Options["Value"] = template.HTML(setting.(*bannerEditorArgument).Value)
@@ -234,7 +236,7 @@ func SetupWidget(Admin *admin.Admin) {
 	Widgets.RegisterWidget(&widget.Widget{
 		Name:        "FullWidthBannerEditor",
 		Templates:   []string{"fullwidth_banner_editor"},
-		PreviewIcon: "/public/images/Widget-FullWidthBannerEditor.png",
+		PreviewIcon: "/images/Widget-FullWidthBannerEditor.png",
 		Setting:     fullwidthBannerEditorResource,
 		Context: func(context *widget.Context, setting interface{}) *widget.Context {
 			context.Options["Value"] = template.HTML(setting.(*bannerEditorArgument).Value)
@@ -270,7 +272,7 @@ func SetupWidget(Admin *admin.Admin) {
 	Widgets.RegisterWidget(&widget.Widget{
 		Name:        "SlideShow",
 		Templates:   []string{"slideshow"},
-		PreviewIcon: "/public/images/Widget-SlideShow.png",
+		PreviewIcon: "/images/Widget-SlideShow.png",
 		Group:       "Banners",
 		Setting:     slideShowResource,
 		Context: func(context *widget.Context, setting interface{}) *widget.Context {
@@ -304,7 +306,7 @@ func SetupWidget(Admin *admin.Admin) {
 		Name:        "Products",
 		Templates:   []string{"products"},
 		Group:       "Products",
-		PreviewIcon: "/public/images/Widget-Products.png",
+		PreviewIcon: "/images/Widget-Products.png",
 		Setting:     selectedProductsResource,
 		Context: func(context *widget.Context, setting interface{}) *widget.Context {
 			if setting != nil {
@@ -335,7 +337,7 @@ func SetupWidget(Admin *admin.Admin) {
 
 	Widgets.RegisterWidget(&widget.Widget{
 		Name:        "Footer Links",
-		PreviewIcon: "/public/images/Widget-FooterLinks.png",
+		PreviewIcon: "/images/Widget-FooterLinks.png",
 		Setting:     Admin.NewResource(&FooterLinks{}),
 		Context: func(context *widget.Context, setting interface{}) *widget.Context {
 			context.Options["Setting"] = setting
