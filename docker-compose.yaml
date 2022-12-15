@@ -3,11 +3,11 @@ version: '3.0'
 services:
 
   mysql:
-    container_name: sktest
+    container_name: database
     image: mysql:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=cms
+      - MYSQL_ROOT_PASSWORD=${DBPassword}
+      - MYSQL_DATABASE=${DBName}
     security_opt:
       - seccomp:unconfined
     ports:
