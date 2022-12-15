@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/schema"
 	"github.com/joaootav/system_supermarket/config/utils"
 	"github.com/joaootav/system_supermarket/models"
+	"github.com/joaootav/system_supermarket/tracer"
 	amazonpay "github.com/qor/amazon-pay-sdk-go"
 	"github.com/qor/gomerchant"
 	"github.com/unrolled/render"
@@ -28,23 +29,38 @@ var decoder = schema.NewDecoder()
 
 // Cart shopping cart
 func (ctrl Controller) Cart(w http.ResponseWriter, req *http.Request) {
+
+	ctx := req.Context()
+	_, cart := tracer.Tracer.Start(ctx, "render-cart-page")
+
 	order := getCurrentOrderWithItems(w, req)
 	w.WriteHeader(http.StatusOK)
 
 	ctrl.View.Execute("cart", map[string]interface{}{"Order": order}, req, w)
+
+	cart.End()
 }
 
 // Checkout checkout shopping cart
 func (ctrl Controller) Checkout(w http.ResponseWriter, req *http.Request) {
+
+	ctx := req.Context()
+	_, checkout := tracer.Tracer.Start(ctx, "render-checkout-page")
+
 	hasAmazon := req.URL.Query().Get("access_token")
 	order := getCurrentOrderWithItems(w, req)
 	w.WriteHeader(http.StatusOK)
 
 	ctrl.View.Execute("checkout", map[string]interface{}{"Order": order, "HasAmazon": hasAmazon}, req, w)
+	checkout.End()
 }
 
 // Complete complete shopping cart
 func (ctrl Controller) Complete(w http.ResponseWriter, req *http.Request) {
+
+	ctx := req.Context()
+	_, complete := tracer.Tracer.Start(ctx, "render-complete-cart-page")
+
 	req.ParseForm()
 
 	order := getCurrentOrder(w, req)
@@ -64,10 +80,15 @@ func (ctrl Controller) Complete(w http.ResponseWriter, req *http.Request) {
 	}
 
 	http.Redirect(w, req, "/cart", http.StatusFound)
+	complete.End()
 }
 
 // CompleteCreditCard complete shopping cart with credit card
 func (ctrl Controller) CompleteCreditCard(w http.ResponseWriter, req *http.Request) {
+
+	ctx := req.Context()
+	_, shopping := tracer.Tracer.Start(ctx, "render-complete-credit-card-page")
+
 	req.ParseForm()
 
 	order := getCurrentOrder(w, req)
@@ -97,13 +118,18 @@ func (ctrl Controller) CompleteCreditCard(w http.ResponseWriter, req *http.Reque
 
 	utils.AddFlashMessage(w, req, "Invalid Credit Card", "error")
 	http.Redirect(w, req, "/cart", http.StatusFound)
+	shopping.End()
 }
 
 // CheckoutSuccess checkout success page
 func (ctrl Controller) CheckoutSuccess(w http.ResponseWriter, req *http.Request) {
+	ctx := req.Context()
+	_, success := tracer.Tracer.Start(ctx, "render-complete-success-page")
+
 	w.WriteHeader(http.StatusOK)
 
 	ctrl.View.Execute("success", map[string]interface{}{}, req, w)
+	success.End()
 }
 
 type updateCartInput struct {
@@ -119,6 +145,9 @@ func (ctrl Controller) UpdateCart(w http.ResponseWriter, req *http.Request) {
 		input updateCartInput
 		tx    = utils.GetDB(req)
 	)
+
+	ctx := req.Context()
+	_, upd := tracer.Tracer.Start(ctx, "render-update-shopping-cart-page")
 
 	req.ParseForm()
 	decoder.Decode(&input, req.PostForm)
@@ -139,6 +168,7 @@ func (ctrl Controller) UpdateCart(w http.ResponseWriter, req *http.Request) {
 	}).With([]string{"json", "xml"}, func() {
 		Render.JSON(w, http.StatusOK, map[string]string{"status": "ok"})
 	}).Respond(req)
+	upd.End()
 }
 
 // AmazonCallback amazon callback

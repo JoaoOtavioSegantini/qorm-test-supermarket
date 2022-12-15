@@ -9,6 +9,7 @@ import (
 
 var Tracer trace.Tracer
 
+// Add zipkin log service
 func SetupTracer(router *gin.Engine) {
 
 	ot := opentel.NewOpenTel()

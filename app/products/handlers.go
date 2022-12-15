@@ -6,6 +6,7 @@ import (
 
 	"github.com/joaootav/system_supermarket/config/utils"
 	"github.com/joaootav/system_supermarket/models"
+	"github.com/joaootav/system_supermarket/tracer"
 	"github.com/qor/render"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
@@ -23,10 +24,15 @@ func (ctrl Controller) Index(w http.ResponseWriter, req *http.Request) {
 		tx       = utils.GetDB(req)
 	)
 
+	ctx := req.Context()
+	_, products := tracer.Tracer.Start(ctx, "render-products-page")
+
 	tx.Preload("ColorVariations").Find(&Products)
 	w.WriteHeader(http.StatusOK)
 
 	ctrl.View.Execute("index", map[string]interface{}{"Products": Products}, req, w)
+	products.End()
+
 }
 
 // Gender products gender page
@@ -36,6 +42,9 @@ func (ctrl Controller) Gender(w http.ResponseWriter, req *http.Request) {
 		tx       = utils.GetDB(req)
 	)
 
+	ctx := req.Context()
+	_, gen := tracer.Tracer.Start(ctx, "render-products-genre-page")
+
 	param := utils.URLParam("gender", req)
 	genre := cases.Title(language.Und).String(param)
 
@@ -43,6 +52,7 @@ func (ctrl Controller) Gender(w http.ResponseWriter, req *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	ctrl.View.Execute("gender", map[string]interface{}{"Products": Products}, req, w)
+	gen.End()
 }
 
 // Show product show page
@@ -56,6 +66,9 @@ func (ctrl Controller) Show(w http.ResponseWriter, req *http.Request) {
 		tx             = utils.GetDB(req)
 	)
 
+	ctx := req.Context()
+	_, sh := tracer.Tracer.Start(ctx, "render-products-details-page")
+
 	if len(codes) > 1 {
 		colorCode = codes[1]
 	}
@@ -68,6 +81,7 @@ func (ctrl Controller) Show(w http.ResponseWriter, req *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	ctrl.View.Execute("show", map[string]interface{}{"CurrentColorVariation": colorVariation}, req, w)
+	sh.End()
 }
 
 // Category category show page
@@ -78,6 +92,9 @@ func (ctrl Controller) Category(w http.ResponseWriter, req *http.Request) {
 		tx       = utils.GetDB(req)
 	)
 
+	ctx := req.Context()
+	_, cat := tracer.Tracer.Start(ctx, "render-products-by-category-page")
+
 	if tx.Where("code = ?", utils.URLParam("code", req)).First(&category).RecordNotFound() {
 		http.Redirect(w, req, "/", http.StatusFound)
 	}
@@ -86,4 +103,5 @@ func (ctrl Controller) Category(w http.ResponseWriter, req *http.Request) {
 	w.WriteHeader(http.StatusOK)
 
 	ctrl.View.Execute("category", map[string]interface{}{"CategoryName": category.Nome, "Products": Products}, req, w)
+	cat.End()
 }
