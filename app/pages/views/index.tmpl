@@ -1,11 +1,7 @@
+<link rel="stylesheet" media="all" href="/dist/article.css">
 <div class="main-article">
     {{ render_edit_button .article }}
     <h1>{{ .article.Title }}</h1>
-    <h4>{{ .article.Author.Name }}</h4>
+    <h4 class="text-muted">{{ .article.Author.Name }} | {{ .article.CreatedAt.Format "02-01-2006" }}</h4>
     <div> {{ raw .article.Content }}</div>
 </div>
-<style>
-.main-article {
-    padding: 3rem 8rem;
-}
-</style>

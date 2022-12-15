@@ -1,4 +1,5 @@
 <h1 style="justify-content: center;display: flex;margin-top:2.5rem;">Articles</h1>
+<link rel="stylesheet" media="all" href="/dist/article.css">
 <div class="article-item">
     {{ range .articles }}
 
@@ -16,53 +17,3 @@
     </div>
     {{ end }}
 </div>
-<style>
-    .article-item {
-        border-radius: 8px;
-        margin-bottom: 20px;
-        background-color: #FFF;
-        padding: 80px;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
-    }
-
-    .article-item a {
-        display: flex;
-        align-items: flex-start;
-        text-decoration: none;
-        color: #000;
-    }
-
-    .article-item-info h2 {
-        font-size: 1.7rem;
-    }
-
-    .article-item-image {
-        padding-right: 20px;
-        margin-right: 20px;
-        border-right: 1px solid #AAA;
-    }
-
-    .article-item-image img {
-        border-radius: 5px;
-    }
-
-    .article-item-info {
-        display: flex;
-        align-self: stretch;
-        flex-direction: column;
-    }
-
-    .article-item-info p {
-        color: #555;
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
-    }
-      @media (min-width: 900px) {
-        .article-item {
-            display: grid;
-            grid-template-columns: 160px 1fr;
-            grid-row-gap: 2rem;
-        }
-    }
-</style>
